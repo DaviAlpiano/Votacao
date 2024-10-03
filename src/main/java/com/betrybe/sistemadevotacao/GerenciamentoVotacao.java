@@ -28,12 +28,15 @@ public class GerenciamentoVotacao implements GerenciamentoVotacaoInterface {
    */
   public static void main(String[] args) {
     GerenciamentoVotacao cadastrar = new GerenciamentoVotacao();
-    System.out.println(cadastrar.pessoasCandidatas);
-    cadastrar.cadastrarPessoaCandidata("davi", 222);
-    cadastrar.cadastrarPessoaCandidata("davi", 222);
+    cadastrar.cadastrarPessoaCandidata("Davi", 222);
+    cadastrar.cadastrarPessoaCandidata("Theus", 223);
     cadastrar.cadastrarPessoaEleitora("lucas", "70900525844");
-    System.out.println(cadastrar.pessoasCandidatas.toString());
-    System.out.println(cadastrar.pessoasEleitoras.toString());
+    cadastrar.cadastrarPessoaEleitora("lucas", "70900525845");
+    cadastrar.cadastrarPessoaEleitora("lucas", "70900525846");
+    cadastrar.votar("70900525844", 222);
+    cadastrar.votar("70900525845", 223);
+    cadastrar.votar("70900525846", 222);
+    cadastrar.mostrarResultado();
   }
 
   @Override
@@ -62,11 +65,33 @@ public class GerenciamentoVotacao implements GerenciamentoVotacaoInterface {
 
   @Override
   public void votar(String cpfPessoaEleitora, int numeroPessoaCandidata) {
-
+    List<String> cpfs = cpfsComputados
+        .stream().filter(e -> e.equals(cpfPessoaEleitora)).toList();
+    if (!cpfs.isEmpty()) {
+      System.out.println("Pessoa eleitora já votou!");
+    } else {
+      for (PessoaCandidata pessoa : pessoasCandidatas) {
+        if (pessoa.getNumero() == numeroPessoaCandidata) {
+          pessoa.receberVoto();
+        }
+      }
+      cpfsComputados.add(cpfPessoaEleitora);
+    }
   }
 
   @Override
   public void mostrarResultado() {
-
+    if (cpfsComputados.isEmpty()) {
+      System.out.println("É preciso ter pelo menos um voto para mostrar o resultado.");
+    } else {
+      for (int i = 0; i < pessoasCandidatas.size(); i++) {
+        String nome = pessoasCandidatas.get(i).getNome();
+        int votos = pessoasCandidatas.get(i).getVotos();
+        double divisor = cpfsComputados.size();
+        long media = Math.round((votos * 100) / divisor);
+        System.out.println("Nome: " + nome + " - " + votos + " votos ( " + media + "% )");
+      }
+      System.out.println("Total de votos: " + cpfsComputados.size());
+    }
   }
 }
