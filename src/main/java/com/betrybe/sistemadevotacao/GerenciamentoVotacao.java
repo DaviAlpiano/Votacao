@@ -21,24 +21,6 @@ public class GerenciamentoVotacao implements GerenciamentoVotacaoInterface {
    */
   ArrayList<String> cpfsComputados = new ArrayList<String>();
 
-  /**
-   * The entry point of application.
-   *
-   * @param args the input arguments
-   */
-  public static void main(String[] args) {
-    GerenciamentoVotacao cadastrar = new GerenciamentoVotacao();
-    cadastrar.cadastrarPessoaCandidata("Davi", 222);
-    cadastrar.cadastrarPessoaCandidata("Theus", 223);
-    cadastrar.cadastrarPessoaEleitora("lucas", "70900525844");
-    cadastrar.cadastrarPessoaEleitora("lucas", "70900525845");
-    cadastrar.cadastrarPessoaEleitora("lucas", "70900525846");
-    cadastrar.votar("70900525844", 222);
-    cadastrar.votar("70900525845", 223);
-    cadastrar.votar("70900525846", 222);
-    cadastrar.mostrarResultado();
-  }
-
   @Override
   public void cadastrarPessoaEleitora(String nome, String cpf) {
     List<PessoaEleitora> eleitora = pessoasEleitoras
@@ -84,9 +66,9 @@ public class GerenciamentoVotacao implements GerenciamentoVotacaoInterface {
     if (cpfsComputados.isEmpty()) {
       System.out.println("É preciso ter pelo menos um voto para mostrar o resultado.");
     } else {
-      for (int i = 0; i < pessoasCandidatas.size(); i++) {
-        String nome = pessoasCandidatas.get(i).getNome();
-        int votos = pessoasCandidatas.get(i).getVotos();
+      for (PessoaCandidata candidato : pessoasCandidatas) {
+        String nome = candidato.getNome();
+        int votos = candidato.getVotos();
         double divisor = cpfsComputados.size();
         long media = Math.round((votos * 100) / divisor);
         System.out.println("Nome: " + nome + " - " + votos + " votos ( " + media + "% )");
