@@ -1,4 +1,4 @@
-package com.betrybe.sistemadevotacao;
+package com.davi.sistemadevotacao;
 
 /**
  * Interface para o gerenciamento de votação.

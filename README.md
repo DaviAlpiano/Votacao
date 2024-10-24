@@ -1,10 +1,22 @@
-# :construction: README em construção ! :construction:
-<!-- Olá, Tryber!
-Esse é apenas um arquivo inicial para o README do seu projeto.
-É essencial que você preencha esse documento por conta própria, ok?
-Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua criatividade brilhar!
-:warning: IMPORTANTE: você precisa deixar nítido:
-- quais arquivos/pastas foram desenvolvidos por você; 
-- quais arquivos/pastas foram desenvolvidos por outra pessoa estudante;
-- quais arquivos/pastas foram desenvolvidos pela Trybe.
--->
+# My Project
+
+# Contexto
+Este projeto trata-se de uma ferramenta para um sistema de votação eletrônico! O sistema possibilita o cadastro de todas as nossas pessoas candidatas e eleitoras, além de coordenar todo o processo de votação e é capaz de verificar os resultados da eleição a qualquer momento.
+
+## Técnologias usadas
+
+Back-end:
+> Desenvolvido usando: Java, Maven
+
+## Instalando Dependências
+ 
+```bash
+mvn install
+``` 
+## Executando aplicação
+
+* Para rodar o back-end:
+
+  ```
+    mvn spring-boot:run
+  ```

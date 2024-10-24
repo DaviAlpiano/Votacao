@@ -1,4 +1,4 @@
-package com.betrybe.sistemadevotacao;
+package com.davi.sistemadevotacao;
 
 import java.util.Scanner;
 
